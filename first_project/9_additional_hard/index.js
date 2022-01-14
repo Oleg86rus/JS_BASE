@@ -23,6 +23,7 @@
  */
 
 let receivedString = prompt('Введите строку из строчных и прописных русских букв вперемешку');
+let numberOfRepeat = prompt('Введите число, какой длинны подстроки искать');
 const alphabet = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ';
 const alphabetStr = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя';
 let resultString = '';
@@ -35,25 +36,16 @@ let letterToSliceFirstIndex = 0;
 let letterToSliceSecondIndex = 0;
 while (i < receivedString.length) {
     symbol = receivedString.charAt(i);
-    console.log('Символ: ', symbol);
     number = Number(symbol);
     letterAfterNumber = receivedString.charAt(i + 1);
     if (symbol === symbol.toUpperCase() && isNaN(symbol)) {
-        console.log('Прописная буквва');
         resultString += alphabet.charAt(alphabet.length - alphabet.indexOf(receivedString.charAt(i)) - 1).toLowerCase();
-        console.log('Результат: ', resultString);
     } else if (!isNaN(symbol) && isNaN(receivedString.charAt(i + 1))) {
         numberToLetter = numberToLetter.repeat(5);
         letterAfterNumber = receivedString.charAt(i + 1);
-        console.log('Число до 10');
-        console.log('Число: ', number)
         letterToSliceFirstIndex = numberToLetter.indexOf((letterAfterNumber), 2) - number;
         letterToSliceSecondIndex = (letterToSliceFirstIndex + number);
-        console.log('Первый индекс', letterToSliceFirstIndex);
-        console.log('Второй индекс',letterToSliceSecondIndex)
-        console.log('Буква после числа', letterAfterNumber);
         resultString += numberToLetter.slice(letterToSliceFirstIndex, letterToSliceSecondIndex);
-
     } else if (!isNaN(symbol) && receivedString.charAt(i + 1) == '' && isNaN(receivedString.charAt(i - 1))) {
         numberToLetter = numberToLetter.repeat(5);
         letterAfterNumber = receivedString.charAt(i - 1);
@@ -62,16 +54,13 @@ while (i < receivedString.length) {
         resultString += numberToLetter.slice(letterToSliceFirstIndex, letterToSliceSecondIndex);
         break;
     } else if (!isNaN(symbol) && !isNaN(receivedString.charAt(i + 1)) && isNaN(receivedString.charAt(i + 2)) && receivedString.charAt(i + 2) !== '') {
-        console.log('Число больше 10 и меньше 100');
         number = Number(symbol + receivedString.charAt(i + 1));
-        console.log(number);
         numberToLetter = numberToLetter.repeat(5);
         letterAfterNumber = receivedString.charAt(i + 2);
         letterToSliceFirstIndex = numberToLetter.indexOf(letterAfterNumber) + 1;
         letterToSliceSecondIndex = letterToSliceFirstIndex + number;
         resultString += receivedString.charAt(i + 2) + numberToLetter.slice(letterToSliceFirstIndex, letterToSliceSecondIndex);
     } else if (!isNaN(symbol) && !isNaN(receivedString.charAt(i + 1)) && !isNaN(receivedString.charAt(i + 2)) && isNaN(receivedString.charAt(i + 3)) && receivedString.charAt(i + 3) !== '') {
-        console.log('Число больше 10 и меньше 1000');
         number = Number(symbol + receivedString.charAt(i + 1) + receivedString.charAt(i + 2));
         numberToLetter = numberToLetter.repeat(50);
         letterAfterNumber = receivedString.charAt(i + 3);
@@ -82,18 +71,14 @@ while (i < receivedString.length) {
         alert('Вы ввели число, больше 999');
         break;
     } else  if (!isNaN(receivedString.charAt(i - 1)) && !isNaN(receivedString.charAt(i - 2)) && isNaN(symbol) && receivedString.charAt(i - 1) !== '') {
-        console.log('пропускаем букву после чиса, которое больше 10');
         resultString += '';
     } else if (isNaN(symbol) && !isNaN(receivedString.charAt(i + 1)) && receivedString.charAt(i + 2) == '' && receivedString.charAt(i + 1) !== ''){
-        console.log('пропускаем букву перед числом, которое последнее');
         resultString += '';
     } else {
-        console.log('Строчная буквва');
         resultString += receivedString.charAt(i);
     }
-
-    console.log('Результат: ', resultString);
-    console.log(`шаг ${i}: `, resultString);
-    i++;
+     i++;
 }
-alert(resultString);
+alert(`Результат алгоритмов: ${resultString}.`);
+
+console.log(resultString)
