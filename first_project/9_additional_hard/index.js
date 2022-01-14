@@ -22,63 +22,82 @@
 Количество подстрок с * подряд идущими символами в верхнем регистре:  *
  */
 
-let receivedString = prompt('Введите строку из строчных и прописных русских букв вперемешку');
-let numberOfRepeat = prompt('Введите число, какой длинны подстроки искать');
+// let receivedString = prompt('Введите строку из строчных и прописных русских букв вперемешку');
+// let enteredNumber = Number(prompt('Введите число, какой длинны подстроки искать').trim());
+// let numberOfRepeatStr = 0;
+// let numberOfRepeat = 0;
+// let symbolRepeated = '';
+// let symbolRepeatedStr = '';
 const alphabet = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ';
 const alphabetStr = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя';
-let resultString = '';
-let i = 0;
-let symbol = '';
+// let resultString = '';
+// let resultStringRepeat = '';
+// let i = 0;
+// let symbol = '';
 let numberToLetter = alphabet + alphabetStr;
-let number = 0;
-let letterAfterNumber = '';
-let letterToSliceFirstIndex = 0;
-let letterToSliceSecondIndex = 0;
-while (i < receivedString.length) {
-    symbol = receivedString.charAt(i);
-    number = Number(symbol);
-    letterAfterNumber = receivedString.charAt(i + 1);
-    if (symbol === symbol.toUpperCase() && isNaN(symbol)) {
-        resultString += alphabet.charAt(alphabet.length - alphabet.indexOf(receivedString.charAt(i)) - 1).toLowerCase();
-    } else if (!isNaN(symbol) && isNaN(receivedString.charAt(i + 1))) {
-        numberToLetter = numberToLetter.repeat(5);
-        letterAfterNumber = receivedString.charAt(i + 1);
-        letterToSliceFirstIndex = numberToLetter.indexOf((letterAfterNumber), 2) - number;
-        letterToSliceSecondIndex = (letterToSliceFirstIndex + number);
-        resultString += numberToLetter.slice(letterToSliceFirstIndex, letterToSliceSecondIndex);
-    } else if (!isNaN(symbol) && receivedString.charAt(i + 1) == '' && isNaN(receivedString.charAt(i - 1))) {
-        numberToLetter = numberToLetter.repeat(5);
-        letterAfterNumber = receivedString.charAt(i - 1);
-        letterToSliceFirstIndex = numberToLetter.indexOf((letterAfterNumber), 2);
-        letterToSliceSecondIndex = (letterToSliceFirstIndex + number);
-        resultString += numberToLetter.slice(letterToSliceFirstIndex, letterToSliceSecondIndex);
-        break;
-    } else if (!isNaN(symbol) && !isNaN(receivedString.charAt(i + 1)) && isNaN(receivedString.charAt(i + 2)) && receivedString.charAt(i + 2) !== '') {
-        number = Number(symbol + receivedString.charAt(i + 1));
-        numberToLetter = numberToLetter.repeat(5);
-        letterAfterNumber = receivedString.charAt(i + 2);
-        letterToSliceFirstIndex = numberToLetter.indexOf(letterAfterNumber) + 1;
-        letterToSliceSecondIndex = letterToSliceFirstIndex + number;
-        resultString += receivedString.charAt(i + 2) + numberToLetter.slice(letterToSliceFirstIndex, letterToSliceSecondIndex);
-    } else if (!isNaN(symbol) && !isNaN(receivedString.charAt(i + 1)) && !isNaN(receivedString.charAt(i + 2)) && isNaN(receivedString.charAt(i + 3)) && receivedString.charAt(i + 3) !== '') {
-        number = Number(symbol + receivedString.charAt(i + 1) + receivedString.charAt(i + 2));
-        numberToLetter = numberToLetter.repeat(50);
-        letterAfterNumber = receivedString.charAt(i + 3);
-        letterToSliceFirstIndex = numberToLetter.indexOf(letterAfterNumber) + 1;
-        letterToSliceSecondIndex = letterToSliceFirstIndex + number;
-        resultString += receivedString.charAt(i + 3) + numberToLetter.slice(letterToSliceFirstIndex, letterToSliceSecondIndex);
-    } else if (!isNaN(symbol) && !isNaN(receivedString.charAt(i + 1)) && !isNaN(receivedString.charAt(i + 2)) && !isNaN(receivedString.charAt(i + 3)) && receivedString.charAt(i + 3) !== '') {
-        alert('Вы ввели число, больше 999');
-        break;
-    } else  if (!isNaN(receivedString.charAt(i - 1)) && !isNaN(receivedString.charAt(i - 2)) && isNaN(symbol) && receivedString.charAt(i - 1) !== '') {
-        resultString += '';
-    } else if (isNaN(symbol) && !isNaN(receivedString.charAt(i + 1)) && receivedString.charAt(i + 2) == '' && receivedString.charAt(i + 1) !== ''){
-        resultString += '';
-    } else {
-        resultString += receivedString.charAt(i);
-    }
-     i++;
-}
-alert(`Результат алгоритмов: ${resultString}.`);
+// let number = 0;
+// let letterAfterNumber = '';
+// let letterToSliceFirstIndex = 0;
+// let letterToSliceSecondIndex = 0;
+// while (i < receivedString.length) {
+//     symbol = receivedString.charAt(i);
+//     number = Number(symbol);
+//     letterAfterNumber = receivedString.charAt(i + 1);
+//     if (symbol === symbol.toUpperCase() && isNaN(symbol)) {
+//         resultString += alphabet.charAt(alphabet.length - alphabet.indexOf(receivedString.charAt(i)) - 1).toLowerCase();
+//     } else if (!isNaN(symbol) && isNaN(receivedString.charAt(i + 1))) {
+//         numberToLetter = numberToLetter.repeat(5);
+//         letterAfterNumber = receivedString.charAt(i + 1);
+//         letterToSliceFirstIndex = numberToLetter.indexOf((letterAfterNumber), 2) - number;
+//         letterToSliceSecondIndex = (letterToSliceFirstIndex + number);
+//         resultString += numberToLetter.slice(letterToSliceFirstIndex, letterToSliceSecondIndex);
+//     } else if (!isNaN(symbol) && receivedString.charAt(i + 1) == '' && isNaN(receivedString.charAt(i - 1))) {
+//         numberToLetter = numberToLetter.repeat(5);
+//         letterAfterNumber = receivedString.charAt(i - 1);
+//         letterToSliceFirstIndex = numberToLetter.indexOf((letterAfterNumber), 2);
+//         letterToSliceSecondIndex = (letterToSliceFirstIndex + number);
+//         resultString += numberToLetter.slice(letterToSliceFirstIndex, letterToSliceSecondIndex);
+//         break;
+//     } else if (!isNaN(symbol) && !isNaN(receivedString.charAt(i + 1)) && isNaN(receivedString.charAt(i + 2)) && receivedString.charAt(i + 2) !== '') {
+//         number = Number(symbol + receivedString.charAt(i + 1));
+//         numberToLetter = numberToLetter.repeat(5);
+//         letterAfterNumber = receivedString.charAt(i + 2);
+//         letterToSliceFirstIndex = numberToLetter.indexOf(letterAfterNumber) + 1;
+//         letterToSliceSecondIndex = letterToSliceFirstIndex + number;
+//         resultString += receivedString.charAt(i + 2) + numberToLetter.slice(letterToSliceFirstIndex, letterToSliceSecondIndex);
+//     } else if (!isNaN(symbol) && !isNaN(receivedString.charAt(i + 1)) && !isNaN(receivedString.charAt(i + 2)) && isNaN(receivedString.charAt(i + 3)) && receivedString.charAt(i + 3) !== '') {
+//         number = Number(symbol + receivedString.charAt(i + 1) + receivedString.charAt(i + 2));
+//         numberToLetter = numberToLetter.repeat(50);
+//         letterAfterNumber = receivedString.charAt(i + 3);
+//         letterToSliceFirstIndex = numberToLetter.indexOf(letterAfterNumber) + 1;
+//         letterToSliceSecondIndex = letterToSliceFirstIndex + number;
+//         resultString += receivedString.charAt(i + 3) + numberToLetter.slice(letterToSliceFirstIndex, letterToSliceSecondIndex);
+//     } else if (!isNaN(symbol) && !isNaN(receivedString.charAt(i + 1)) && !isNaN(receivedString.charAt(i + 2)) && !isNaN(receivedString.charAt(i + 3)) && receivedString.charAt(i + 3) !== '') {
+//         alert('Вы ввели число, больше 999');
+//         break;
+//     } else  if (!isNaN(receivedString.charAt(i - 1)) && !isNaN(receivedString.charAt(i - 2)) && isNaN(symbol) && receivedString.charAt(i - 1) !== '') {
+//         resultString += '';
+//     } else if (isNaN(symbol) && !isNaN(receivedString.charAt(i + 1)) && receivedString.charAt(i + 2) == '' && receivedString.charAt(i + 1) !== ''){
+//         resultString += '';
+//     } else {
+//         resultString += receivedString.charAt(i);
+//     }
+//      i++;
+// }
+// alert(`Результат алгоритмов: ${resultString}.`);
+// console.log('Введенная строка: \n', receivedString);
+// console.log('Измененная строка: \n', resultString);
+//
+// i = 0;
+// resultStringRepeat = resultString;
+// while (i < alphabet.length) {
+//
+//     symbolRepeatedStr = alphabetStr.slice(0, enteredNumber);
+//     symbolRepeated = alphabet.slice(0, enteredNumber);
+//     resultStringRepeat = resultStringRepeat.split(symbolRepeatedStr);
+//     console.log(resultStringRepeat);
+// }
 
-console.log(resultString)
+numberToLetter = numberToLetter.repeat(10);
+numberToLetter = numberToLetter.slice("АБВГ");
+console.log(numberToLetter)

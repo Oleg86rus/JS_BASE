@@ -8,6 +8,7 @@ javaScriptDescription = javaScriptDescription.slice(0, javaScriptDescription.len
 console.log('Длинна оставшейся части строки: ', javaScriptDescription.length)
 //заменяем а на А
 javaScriptDescription = javaScriptDescription.replaceAll('а', 'А')
+javaScriptDescription = javaScriptDescription.replaceAll('a', 'A')
 console.log('Заменили а на А: ', javaScriptDescription)
 //убираем все пробелы (нашел в гугле, но не понял как происходит работа с регулярными выражениями...
 javaScriptDescription = javaScriptDescription.replaceAll(' ', '');

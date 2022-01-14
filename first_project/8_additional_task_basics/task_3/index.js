@@ -16,7 +16,7 @@ if (password.length > 2 && password.length <= 20) {
         i++;
     }
     if (numberInPassword === true && lowerCaseInPassword === true) {
-        alert('Пароль валидный')
+        alert('Пароль валидный. Добро пожаловать в аккаунт!')
     } else {
         alert('Пароль не удовлетворяет условиям');
     }
