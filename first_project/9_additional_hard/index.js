@@ -23,11 +23,7 @@
  */
 
 let receivedString = prompt('Введите строку из строчных и прописных русских букв вперемешку');
-let enteredNumber = Number(prompt('Введите число, какой длинны подстроки искать').trim());
-let numberOfRepeatStr = 0;
-let numberOfRepeat = 0;
-let symbolRepeated = '';
-let symbolRepeatedStr = '';
+
 const alphabet = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ';
 const alphabetStr = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя';
 let resultString = '';
@@ -88,16 +84,32 @@ alert(`Результат алгоритмов: ${resultString}.`);
 console.log('Введенная строка: \n', receivedString);
 console.log('Измененная строка: \n', resultString);
 
+let enteredNumber = Number(prompt('Введите число, какой длинны подстроки искать для Прописных').trim());
+let enteredNumberStr = Number(prompt('Введите число, какой длинны подстроки искать для Строчных').trim());
+let numberOfRepeatStr = 0;
+let numberOfRepeat = 0;
+let symbolRepeated = '';
+let symbolRepeatedStr = '';
+let ifRepeatedFirstLetter = false;
+let ifRepeatedSecondLetter = false;
+let ifRepeatedThirdLetter = false;
+let ifRepeatedFourthLetter = false;
+let symbolFromResult = '';
+let ifRepeatedStr = false;
 i = 0;
 resultStringRepeat = resultString;
-while (i < alphabet.length) {
+while (i < (alphabet.length - enteredNumber)) {
+    symbolRepeated = alphabet.slice(i, (i + enteredNumber));
 
-    symbolRepeatedStr = alphabetStr.slice(0, enteredNumber);
-    symbolRepeated = alphabet.slice(0, enteredNumber);
-    resultStringRepeat = resultStringRepeat.split(symbolRepeatedStr);
-    console.log(resultStringRepeat);
 }
-
-numberToLetter = numberToLetter.repeat(10);
-numberToLetter = numberToLetter.slice("АБВГ");
-console.log(numberToLetter)
+/*
+С позволения @frontit , я бы сделал так:
+1. Запросил N -кол-во символов в проверяемой строке;
+2. Далее все проверки и формирования проверяемой строки идут в цикле;
+3. На первой итерации формирую первую подстроку для поиска, длиной N из символов, как в задании строго идущих по алфавиту (например, N = 2, stringToFind = 'аб'' или, N = 3 -> 'абв')
+4. Проверяем все вхождения полученной полученной подстроки в результирующую строку (которую сформировали в п.1...4). Записываем их себе в какой-нибудь counter
+5. Работаем с индексом цикла
+6. Повторяем итерацию. Повторяем до тех пор пока не проверим все возможные варианты подстроки из алфавита  длиной N
+7. Делаем отдельно для Lowercase и UpperCase
+8. Выводим итоговый результат
+ */
