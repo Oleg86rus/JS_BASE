@@ -21,8 +21,8 @@ const getDivisorsCount = (number = 1) => {
         answer = answer.slice(0, (answer.length - 2));
         answer += `)`;
         }
-alert(`Число ${number} - ${numberOfDividers} ${answer}`);
-console.log(`Число ${number} - ${numberOfDividers} ${answer}`);
+alert(`Вы ввели число ${number} - ${numberOfDividers} ${answer}`);
+console.log(`Вы ввели число ${number} - ${numberOfDividers} ${answer}`);
 
 }
 getDivisorsCount(number);
