@@ -16,14 +16,10 @@ const getDivisorsCount = (number = 1) => {
             if (number % i === 0) {
                 numberOfDividers += 1;
                 answer += `${i}, `;
-                console.log(numberOfDividers)
-                console.log(answer)
-
             }
             }
         answer = answer.slice(0, (answer.length - 2));
         answer += `)`;
-        console.log(answer)
         }
 console.log(`Число ${number} - ${numberOfDividers} ${answer}`);
 
