@@ -18,8 +18,7 @@ const getDivisorsCount = (number = 1) => {
                 answer += `${i}, `;
             }
             }
-        answer = answer.slice(0, (answer.length - 2));
-        answer += `)`;
+        answer = answer.slice(0, (answer.length - 2)) + ')';
         }
 alert(`Вы ввели число ${number} - ${numberOfDividers} ${answer}`);
 console.log(`Вы ввели число ${number} - ${numberOfDividers} ${answer}`);
