@@ -10,7 +10,7 @@ let numbersArray = [];
 let sumNumbersArray = 0;
 let number = Number(prompt('Введите число для массива').trim());
 const getSumOfSequence = (number) => {
-    for (i = 1; i <= number; i++) {
+    for (let i = 1; i <= number; i++) {
         numbersArray.push(i);
     }
     console.log(`Массив: `, numbersArray);
