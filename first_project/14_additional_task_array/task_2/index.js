@@ -9,26 +9,30 @@
 const getMathResult = (expantion) => {
     if (expantion[1] === '+') {
         return Number(expantion[0]) + Number(expantion[2]);
-    } else if (expantion[1] === '-') {
+    } else if (expantion.length === 3 && expantion[1] === '-') {
         return Number(expantion[0]) - Number(expantion[2]);
-    } else if (expantion[1] === '/') {
+    } else if (expantion.length === 3 && expantion[1] === '/') {
         return Number(expantion[0]) / Number(expantion[2]);
-    } else if (expantion[1] === '>' && Number(expantion[0]) > Number(expantion[2])) {
+    } else if (expantion.length === 3 && expantion[1] === '>' && Number(expantion[0]) > Number(expantion[2])) {
         return true;
-    } else if (expantion[1] === '>' && Number(expantion[0]) < Number(expantion[2])) {
+    } else if (expantion.length === 3 && expantion[1] === '>' && Number(expantion[0]) < Number(expantion[2])) {
         return false;
-    } else if (expantion[1] === '<' && Number(expantion[0]) < Number(expantion[2])) {
+    } else if (expantion.length === 3 && expantion[1] === '<' && Number(expantion[0]) < Number(expantion[2])) {
         return true;
-    } else if (expantion[1] === '<' && Number(expantion[0]) > Number(expantion[2])) {
+    } else if (expantion.length === 3 && expantion[1] === '<' && Number(expantion[0]) > Number(expantion[2])) {
         return false;
-    } else if (expantion[1] === '=' && Number(expantion[0]) === Number(expantion[2])) {
+    } else if (expantion.length === 3 && expantion[1] === '=' && Number(expantion[0]) === Number(expantion[2])) {
         return true;
-    } else if (expantion[1] === '=' && Number(expantion[0]) !== Number(expantion[2])) {
+    } else if (expantion.length === 3 && expantion[1] === '=' && Number(expantion[0]) !== Number(expantion[2])) {
         return false;
-    } else if (expantion[1] === '**' && typeof (expantion[0]) === 'number' && typeof(expantion[2]) === 'number') {
+    } else if (expantion.length === 3 && expantion[1] === '**' && typeof (expantion[0]) === 'number' && typeof(expantion[2]) === 'number') {
         return expantion[0] ** expantion[2];
-    } else if ((expantion[1] === '**' && typeof (expantion[0]) === 'string' || (expantion[1] === '**' && typeof (expantion[0]) === 'string'))) {
-        console.error('Ошибка');
+    } else if (expantion.length === 3 && expantion[1] === '**' && typeof (expantion[0]) === 'string' || (expantion[1] === '**' && typeof (expantion[0]) === 'string')) {
+        return console.error('Ошибка');
+    } else if (expantion.length === 3 && expantion[1] === '**' && typeof(expantion[0]) === 'string' && typeof(expantion[0]) === 'string') {
+        return console.error('Ошибка');
+    } else if (expantion.length > 3) {
+
     }
 };
 console.log(typeof(5))
@@ -41,4 +45,8 @@ console.log(getMathResult(['5', '<', '10']));
 console.log(getMathResult(['1', '=', 1]));
 console.log(getMathResult([3, '**', 3]));
 console.log(getMathResult(['1', '**', '1']));
+console.log(getMathResult(['1', '**', 1]));
+let a = ['900', 'hello', 'javascript', 'help200', '*', 4];
+console.log(a.sort())
 
+//['100', 'hello', 'javascript', , 'help200', '+', 4]
