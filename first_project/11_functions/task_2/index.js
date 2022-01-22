@@ -29,10 +29,12 @@ const getSumOfNumbers = (number, type) => {
         } else if (type === ''){
             summ += i;
             console.log('все числа');
+        } else {
+            alert('Введенный тип должен быть odd, even или пустая строка');
+            break;
         }
         console.log(summ);
     }
-
     return summ;
 }
 

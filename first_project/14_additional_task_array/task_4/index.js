@@ -8,7 +8,7 @@
 
 let numbersArray = [];
 let sumNumbersArray = 0;
-const number = Number(prompt('Введите число для массива').trim());
+let number = Number(prompt('Введите число для массива').trim());
 const getSumOfSequence = (number) => {
     for (let i = 1; i <= number; i++) {
         numbersArray.push(i);
