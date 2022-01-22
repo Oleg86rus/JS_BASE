@@ -5,6 +5,7 @@
 
 Также учтите, что в массив expression иногда может быть передано больше 3-х параметров, и это конечно же неверно. Но если все же такое было сделано, вам необходимо удалить лишние элементы в массиве, которые нельзя преобразовать к числу, которые являются ложными. Если же длина массива expression меньше 3, то функция getMathResult должна возвращать ошибку в виде строки “Ошибка”.
  */
+const mathOperator = ['=', '-', '+', '/', '*', '<', '>', '**'];
 
 const getMathResult = (expantion) => {
     if (expantion[1] === '+') {
@@ -32,10 +33,48 @@ const getMathResult = (expantion) => {
     } else if (expantion.length === 3 && expantion[1] === '**' && typeof(expantion[0]) === 'string' && typeof(expantion[0]) === 'string') {
         return console.error('Ошибка');
     } else if (expantion.length > 3) {
+        expantion.sort();
+        for (let i = 0; i <= expantion.length; i++) {
+            console.log(i)
+            const searchMathOperator = mathOperator.find((operator) => {
+            return operator === expantion[i];
+            });
+            if (searchMathOperator === undefined) {
+                console.error('Математический оператор не найден');
+            } else {
+                console.log(searchMathOperator)
+            }
+            break;
+        }
+        if (expantion[0] === '+') {
 
+        } else if (expantion[0] === '-') {
+            return expantion[1] - expantion[2];
+        } else if (expantion[0] === '*') {
+            return expantion[1] * expantion[2];
+        } else if (expantion[0] === '/') {
+            return expantion[1] / expantion[2];
+        } else if (expantion[0] === '=' && Number(expantion[1]) === Number(expantion[2])) {
+            return true;
+        } else if (expantion[0] === '=' && Number(expantion[1]) !== Number(expantion[2])) {
+            return false;
+        } else if (expantion[0] === '<' && Number(expantion[0]) < Number(expantion[2])) {
+            return true;
+        } else if (expantion[0] === '<' && Number(expantion[0]) > Number(expantion[2])) {
+            return false;
+        } else if (expantion[0] === '>' && Number(expantion[1]) > Number(expantion[2])) {
+            return true;
+        } else if (expantion[0] === '>' && Number(expantion[1]) < Number(expantion[2])) {
+            return false;
+        } else if (expantion[0] === '**' && typeof (expantion[0]) === 'number' && typeof(expantion[2]) === 'number') {
+            return expantion[1] ** expantion[2];
+        } else if (expantion[0] === '**' && typeof (expantion[0]) === 'string' || (expantion[1] === '**' && typeof (expantion[0]) === 'string')) {
+            console.error('Ошибка');
+        } else if (expantion[0] === '**' && typeof(expantion[0]) === 'string' && typeof(expantion[0]) === 'string') {
+            console.error('Ошибка');
+        }
     }
 };
-console.log(typeof(5))
 console.log(getMathResult(['200', '+', 300]));
 console.log(getMathResult(['20', '-', '5']));
 console.log(getMathResult([100, '/', 100]));
@@ -46,7 +85,8 @@ console.log(getMathResult(['1', '=', 1]));
 console.log(getMathResult([3, '**', 3]));
 console.log(getMathResult(['1', '**', '1']));
 console.log(getMathResult(['1', '**', 1]));
-let a = ['900', 'hello', 'javascript', 'help200', '*', 4];
-console.log(a.sort())
-
-//['100', 'hello', 'javascript', , 'help200', '+', 4]
+console.log(getMathResult(['900', 'hello', 'javascript', 'help200', '/', 4]));
+console.log(getMathResult(['900', 'hello', 'javascript', 'help200', '*', 4]));
+console.log(getMathResult(['900', '+', '250', 'help200', 25, 4]));
+console.log(getMathResult(['900', 'hello', 'javascript', 'help200', 'asv', 4]));
+console.log(getMathResult(['900', 'hello', '-', 'help200', '25', 4]));
