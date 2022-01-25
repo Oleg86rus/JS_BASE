@@ -47,7 +47,7 @@ while (i < receivedString.length) {
         letterToSliceFirstIndex = numberToLetter.indexOf((letterAfterNumber), 2) - number;
         letterToSliceSecondIndex = (letterToSliceFirstIndex + number);
         resultString += numberToLetter.slice(letterToSliceFirstIndex, letterToSliceSecondIndex);
-    } else if (!isNaN(symbol) && receivedString.charAt(i + 1) == '' && isNaN(receivedString.charAt(i - 1))) {
+    } else if (!isNaN(symbol) && receivedString.charAt(i + 1) === '' && isNaN(receivedString.charAt(i - 1))) {
         numberToLetter = numberToLetter.repeat(5);
         letterAfterNumber = receivedString.charAt(i - 1);
         letterToSliceFirstIndex = numberToLetter.indexOf((letterAfterNumber), 2);
@@ -71,37 +71,37 @@ while (i < receivedString.length) {
     } else if (!isNaN(symbol) && !isNaN(receivedString.charAt(i + 1)) && !isNaN(receivedString.charAt(i + 2)) && !isNaN(receivedString.charAt(i + 3)) && receivedString.charAt(i + 3) !== '') {
         alert('Вы ввели число, больше 999');
         break;
-    } else  if (!isNaN(receivedString.charAt(i - 1)) && !isNaN(receivedString.charAt(i - 2)) && isNaN(symbol) && receivedString.charAt(i - 1) !== '') {
+    } else  if (!isNaN(receivedString.charAt(i - 1)) && !isNaN(receivedString.charAt(i - 2)) && isNaN(symbol) && receivedString.charAt(i - 1) !== '' && receivedString.charAt(i - 2) !== '' || !isNaN(receivedString.charAt(i - 1)) && !isNaN(receivedString.charAt(i - 2)) && !isNaN(receivedString.charAt(i - 3)) && isNaN(symbol) && receivedString.charAt(i - 1) !== '' && receivedString.charAt(i - 2) !== '' &&  receivedString.charAt(i - 3) !== '') {
         resultString += '';
-    } else if (isNaN(symbol) && !isNaN(receivedString.charAt(i + 1)) && receivedString.charAt(i + 2) == '' && receivedString.charAt(i + 1) !== ''){
+    } else if (isNaN(symbol) && !isNaN(receivedString.charAt(i + 1)) && receivedString.charAt(i + 1) !== '' && receivedString.charAt(i + 2) === '' && receivedString.charAt(i + 3) === ''){
         resultString += '';
-    } else {
+    } else if (isNaN(symbol) && receivedString.charAt(i + 1) === '' || isNaN(symbol) && isNaN(receivedString.charAt(i + 1)) || isNaN(symbol) && isNaN(receivedString.charAt(i - 1))){
         resultString += receivedString.charAt(i);
     }
      i++;
 }
-alert(`Результат алгоритмов: ${resultString}.`);
+alert(`Результат алгоритмов: ${resultString}`);
 console.log('Введенная строка: \n', receivedString);
 console.log('Измененная строка: \n', resultString);
 
-let enteredNumber = Number(prompt('Введите число, какой длинны подстроки искать для Прописных').trim());
-let enteredNumberStr = Number(prompt('Введите число, какой длинны подстроки искать для Строчных').trim());
-let numberOfRepeatStr = 0;
-let numberOfRepeat = 0;
-let symbolRepeated = '';
-let symbolRepeatedStr = '';
-let ifRepeatedFirstLetter = false;
-let ifRepeatedSecondLetter = false;
-let ifRepeatedThirdLetter = false;
-let ifRepeatedFourthLetter = false;
-let symbolFromResult = '';
-let ifRepeatedStr = false;
-i = 0;
-resultStringRepeat = resultString;
-while (i < (alphabet.length - enteredNumber)) {
-    symbolRepeated = alphabet.slice(i, (i + enteredNumber));
-
-}
+// let enteredNumber = Number(prompt('Введите число, какой длинны подстроки искать для Прописных').trim());
+// let enteredNumberStr = Number(prompt('Введите число, какой длинны подстроки искать для Строчных').trim());
+// let numberOfRepeatStr = 0;
+// let numberOfRepeat = 0;
+// let symbolRepeated = '';
+// let symbolRepeatedStr = '';
+// let ifRepeatedFirstLetter = false;
+// let ifRepeatedSecondLetter = false;
+// let ifRepeatedThirdLetter = false;
+// let ifRepeatedFourthLetter = false;
+// let symbolFromResult = '';
+// let ifRepeatedStr = false;
+// i = 0;
+// resultStringRepeat = resultString;
+// while (i < (alphabet.length - enteredNumber)) {
+//     symbolRepeated = alphabet.slice(i, (i + enteredNumber));
+//
+// }
 /*
 С позволения @frontit , я бы сделал так:
 1. Запросил N -кол-во символов в проверяемой строке;
@@ -112,4 +112,11 @@ while (i < (alphabet.length - enteredNumber)) {
 6. Повторяем итерацию. Повторяем до тех пор пока не проверим все возможные варианты подстроки из алфавита  длиной N
 7. Делаем отдельно для Lowercase и UpperCase
 8. Выводим итоговый результат
+ */
+/*
+тАгДеН -> тягыес
+та4г -> таЯабвг
+та9г -> таЪЫЬЭЮЯабвг
+та10г -> тагдеёжзийклм
+та100г -> тагдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГД
  */
