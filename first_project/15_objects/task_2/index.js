@@ -11,10 +11,10 @@ const giveTalonsInOrder = (patients, orders) => {
         peopleForSort.push(patients.find(obj => obj.id === item));
     })
     return peopleForSort;
-}
+};
 
 const ordersArr = [4, 2, 1, 3];
-console.log('Очередь по id: ', ordersArr)
+console.log('Очередь по id: ', ordersArr);
 const people = [
     { id: 1, name: "Максим" },
     { id: 2, name: "Николай" },

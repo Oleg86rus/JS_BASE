@@ -14,14 +14,11 @@ const giveJobToStudent = (student, jobName) => {
     return student;
 };
 
-
-
-
 const student = {
     fullName: 'Максим',
     experienceInMonths: 12,
     stack: ['HTML', 'CSS', 'JavaScript', 'React'],
-}
+};
 console.log('Изначальный массив student: ', student);
 const updatedStudent = giveJobToStudent(student, 'веб-разработчик');
 console.log('Обновленный массив: ', updatedStudent);

@@ -31,7 +31,7 @@ for (let i = 0; i < users.length; i++) {
     }
 }
 userOnlineNames = userOnlineNames.slice(0, (userOnlineNames.length - 2));
-console.log('Строка с именами пользователей online: ', userOnlineNames)
-console.log('Новый массив с объектами, чей статус online: ', onlineUsers)
+console.log('Строка с именами пользователей online: ', userOnlineNames);
+console.log('Новый массив с объектами, чей статус online: ', onlineUsers);
 console.log(`Сейчас в онлайн следующие пользователи: ${userOnlineNames}`);
 alert(`Сейчас в онлайн следующие пользователи: ${userOnlineNames}`);

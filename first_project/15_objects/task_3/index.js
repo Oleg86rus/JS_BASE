@@ -23,19 +23,17 @@ const handleObjects = (obj, key, action) => {
         return obj;
     } else if (action === 'delete') {
         delete obj.key;
-        //console.log(key)
-       // console.log(obj)
         return obj;
     } else {
         return obj;
     }
-}
+};
 
 const student = {
     name: 'Maxim',
     programmingLanguage: 'JavaScript',
-}
-console.log('Изначальный объект', student)
+};
+console.log('Изначальный объект', student);
 let resultAdd = handleObjects(student, 'experience', 'add');
 console.log('resultAdd: ', resultAdd);
 let resultGet = handleObjects(student, 'programmingLanguage', 'get');
