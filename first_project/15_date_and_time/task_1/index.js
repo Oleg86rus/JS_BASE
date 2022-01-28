@@ -25,10 +25,8 @@ const getDateFormat = (date, separator = '.') => {
     };
     dateFormate = getCorrectDateFormat(dateFormate, date.getDate());
     monthFormate = getCorrectDateFormat(monthFormate, date.getMonth());
-    console.log(getCorrectDateFormat(dateFormate, date.getDate()));
-    console.log(getCorrectDateFormat(monthFormate, date.getMonth()));
-    console.log(dateFormate);
-    console.log(monthFormate);
+    console.log('Число: ', dateFormate);
+    console.log('Месяц: ', monthFormate);
     return dateFormate + separator + monthFormate + separator + date.getFullYear();
 }
-console.log(getDateFormat(date, '-'));
+console.log('Дата: ', getDateFormat(date, '-'));

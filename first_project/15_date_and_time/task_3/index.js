@@ -10,6 +10,6 @@ days - количество дней, тип данных number, по умол�
 const oldDate = new Date(2000, 0, 1);
 console.log('Изначальная дата: ', oldDate);
 const addDays = (date, days) => {
-    return new Date(date.getDate() + days * 24 * 60 * 60 * 1000);
+    return new Date(date.getTime() + days * 24 * 60 * 60 * 1000);
 }
-console.log('Дата после отработки функции: ', addDays(oldDate, 11));
+console.log('Дата после отработки функции: ', addDays(oldDate, 111));
