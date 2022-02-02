@@ -15,27 +15,27 @@ const student = {
     improveLevel() {
         this.level += 1;
         if (this.level === 2) {
-            this.stack.push('CSS')
-            console.log('level = 2: ', this.stack)
+            this.stack.push('CSS');
+            console.log('level = 2: ', this.stack);
         } else if (this.level === 3) {
-            this.stack.push('JavaScript')
-            console.log('level = 3: ', this.stack)
+            this.stack.push('JavaScript');
+            console.log('level = 3: ', this.stack);
         } else if (this.level === 4) {
-            this.stack.push('React')
-            console.log('level = 4: ', this.stack)
+            this.stack.push('React');
+            console.log('level = 4: ', this.stack);
         } else if (this.level === 5) {
-            this.stack.push('NodeJs')
-            console.log('level = 5: ', this.stack)
+            this.stack.push('NodeJs');
+            console.log('level = 5: ', this.stack);
         }
-        console.log('Итог функции: ', this)
-        return this
+        console.log('Итог функции: ', this);
+        return this;
     }
 
 }
-console.log('Изначальный объект: ', student)
-console.log('Вызов функции: ', student.improveLevel())
+console.log('Изначальный объект: ', student);
+console.log('Вызов функции: ', student.improveLevel());
 student
     .improveLevel()
     .improveLevel()
     .improveLevel()
-    .improveLevel()
+    .improveLevel();
