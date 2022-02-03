@@ -70,3 +70,12 @@ dictionary.remove('lols');
 dictionary.remove('lolddsds');
 dictionary.remove('lolsdsdsds');
 dictionary.showAllWords();
+
+const dictionary2 = new Dictionary('Толковый словарь');
+dictionary2.add('JavaScript', 'популярный язык программирования');
+dictionary2.add('Веб-разработчик', 'Человек, который создает новые сервисы и сайты или поддерживает и дополняет существующие');
+
+dictionary2.remove('JavaScript');
+dictionary2.showAllWords();
+// Веб-разработчик - Человек, который создает новые сервисы и сайты или поддерживает
+// и дополняет существующие
