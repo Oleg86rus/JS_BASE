@@ -17,6 +17,7 @@ const getKiller = (suspectInfo, deadPeople) => {
         deadPeople.forEach((killed) => {
             if (arr[1].includes(killed)) {
                 testForSuspects.push(1);
+                console.log(testForSuspects)
             } else {
                 testForSuspects.push(0);
             }
