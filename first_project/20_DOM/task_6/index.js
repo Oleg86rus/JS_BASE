@@ -82,32 +82,13 @@ tasks.forEach((obj) => {
     divTaskItemMainContent.insertAdjacentElement('beforeend', spanTaskItemText);
     divTaskItemMainContainer.insertAdjacentElement('beforeend', buttonTaskItemDeleteButton);
 })
-const checkTaskNameInputOnValidation = (value) => {
-    if (!value) {
-        return false;
-    }
-    return true;
-}
-const createTaskBlock = document.querySelector('.create-task-block');
-const taskNameInput = createTaskBlock.querySelector('.create-task-block__input');
-
-taskNameInput.addEventListener('input', (event) => {
-    const { target } = event;
-    const { value } = target;
-
-    const isValid = checkTaskNameInputOnValidation(value);
-    const messageBlockFromDOM = document.querySelector('.error-message-block');
-
-    if (!isValid || textOfTasks.includes(value)) {
-        const newMessageBlock = document.createElement('span');
-        newMessageBlock.className = 'error-message-block';
-        newMessageBlock.textContent = 'Ошибка! Текст для задачи не должен быть пустым и не должен дублироваться!';
-        createTaskBlock.append(newMessageBlock);
-    } else if (isValid && messageBlockFromDOM) {
-        messageBlockFromDOM.remove();
-    }
-})
-
+// const checkTaskNameInputOnValidation = (value) => {
+//     if (!value || value.includes('@')) {
+//         return false;
+//     }
+//
+//     return true;
+// }
 createTaskForm.addEventListener('submit', (event) => {
     event.preventDefault();
     const { target } = event;
