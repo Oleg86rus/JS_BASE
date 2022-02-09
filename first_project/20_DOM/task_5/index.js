@@ -36,10 +36,9 @@ const getRandomNumber = function getRandomNumber(min, max) {
 }
 const numbersOfId = [];
 const textOfTasks = [];
-const divTaskList = document.querySelector('.tasks-list');
+const divTasksList = document.querySelector('.tasks-list');
 const createTaskForm = document.querySelector('.create-task-block');
-const searchEror = document.querySelector('.errorByCreateElement')
-
+const body = document.querySelector('body');
 
 tasks.forEach((obj) => {
     numbersOfId.push(Number(obj.id))
@@ -74,7 +73,7 @@ tasks.forEach((obj) => {
     buttonTaskItemDeleteButton.className = 'task-item__delete-button default-button delete-button';
     buttonTaskItemDeleteButton.innerHTML = 'Удалить';
 
-    divTaskList.insertAdjacentElement('beforeend', divTaskItem);
+    divTasksList.insertAdjacentElement('beforeend', divTaskItem);
     divTaskItem.insertAdjacentElement('afterbegin', divTaskItemMainContainer);
     divTaskItemMainContainer.insertAdjacentElement('afterbegin', divTaskItemMainContent);
     divTaskItemMainContent.insertAdjacentElement('afterbegin', formCheckbox);
@@ -83,16 +82,24 @@ tasks.forEach((obj) => {
     divTaskItemMainContent.insertAdjacentElement('beforeend', spanTaskItemText);
     divTaskItemMainContainer.insertAdjacentElement('beforeend', buttonTaskItemDeleteButton);
 })
-
+// const checkTaskNameInputOnValidation = (value) => {
+//     if (!value || value.includes('@')) {
+//         return false;
+//     }
+//
+//     return true;
+// }
 createTaskForm.addEventListener('submit', (event) => {
-
     event.preventDefault();
     const { target } = event;
+    // const { value } = target;
+    // const isValid = checkTaskNameInputOnValidation(value);
     const taskNameInput = target.taskName;
     const inputValue = taskNameInput.value;
-
+    console.log(textOfTasks)
+    console.log(inputValue)
     if (inputValue && !textOfTasks.includes(inputValue)) {
-        const errorByCreateElement = document.querySelector('.errorByCreateElement');
+        const errorByCreateElement = document.querySelector('.error-message-block');
         if (errorByCreateElement) {
             errorByCreateElement.remove();
         }
@@ -131,7 +138,7 @@ createTaskForm.addEventListener('submit', (event) => {
         buttonTaskItemDeleteButton.className = 'task-item__delete-button default-button delete-button';
         buttonTaskItemDeleteButton.innerHTML = 'Удалить';
 
-        divTaskList.insertAdjacentElement('beforeend', divTaskItem);
+        divTasksList.insertAdjacentElement('beforeend', divTaskItem);
         divTaskItem.insertAdjacentElement('afterbegin', divTaskItemMainContainer);
         divTaskItemMainContainer.insertAdjacentElement('afterbegin', divTaskItemMainContent);
         divTaskItemMainContent.insertAdjacentElement('afterbegin', formCheckbox);
@@ -140,7 +147,7 @@ createTaskForm.addEventListener('submit', (event) => {
         divTaskItemMainContent.insertAdjacentElement('beforeend', spanTaskItemText);
         divTaskItemMainContainer.insertAdjacentElement('beforeend', buttonTaskItemDeleteButton);
     } else if (!inputValue){
-        const errorByCreateElement = document.querySelector('.errorByCreateElement');
+        const errorByCreateElement = document.querySelector('.error-message-block');
         if (errorByCreateElement) {
             errorByCreateElement.remove();
         }
@@ -148,22 +155,58 @@ createTaskForm.addEventListener('submit', (event) => {
         if (!searchErorEpmty) {
 
             const errorSpan = document.createElement('span');
-            errorSpan.className = 'errorByCreateElement errorEmpty';
+            errorSpan.className = 'error-message-block errorEmpty';
             errorSpan.textContent = `Название задачи не должно быть пустым! Введите задачу корректно!`
             createTaskForm.append(errorSpan);
         }
 
     } else if (textOfTasks.includes(inputValue)) {
-        const errorByCreateElement = document.querySelector('.errorByCreateElement');
+        const errorByCreateElement = document.querySelector('.error-message-block');
         if (errorByCreateElement) {
             errorByCreateElement.remove();
         }
         const searchErrorDouble = document.querySelector('.errorDouble')
         if (!searchErrorDouble) {
             const errorSpan = document.createElement('span');
-            errorSpan.className = 'errorByCreateElement errorDouble';
+            errorSpan.className = 'error-message-block errorDouble';
             errorSpan.textContent = `Задача с таким названием уже существует! Исключите повторы!`
             createTaskForm.append(errorSpan);
         }
+    }
+})
+const deleteTaskFromTasks = function () {
+    const divDeleteTaskModalOverlay = document.createElement('div');
+    divDeleteTaskModalOverlay.className = 'modal-overlay modal-overlay_hidden';
+    const divDeleteModal = document.createElement('div');
+    divDeleteModal.className = 'delete-modal';
+    const h3DeleteModalQuestion = document.createElement('h3');
+    h3DeleteModalQuestion.className = 'delete-modal__question';
+    h3DeleteModalQuestion.textContent = 'Вы действительно хотите удалить задачу?';
+    const divDeleteModalButtons = document.createElement('div');
+    divDeleteModalButtons.className = 'delete-modal__buttons';
+    const DeleteModalButtonConfirm = document.createElement('button');
+    DeleteModalButtonConfirm.className = 'delete-modal__button delete-modal__confirm-button';
+    DeleteModalButtonConfirm.textContent = 'Удалить';
+    const DeleteModalButtonCancel = document.createElement('button');
+    DeleteModalButtonCancel.className = 'delete-modal__button delete-modal__cancel-button';
+    DeleteModalButtonCancel.textContent = 'Отмена';
+    body.insertAdjacentElement('beforeend', divDeleteTaskModalOverlay)
+    divDeleteTaskModalOverlay.insertAdjacentElement('afterbegin', divDeleteModal);
+    divDeleteModal.insertAdjacentElement('afterbegin', h3DeleteModalQuestion);
+    divDeleteModal.insertAdjacentElement('beforeend', divDeleteModalButtons);
+    divDeleteModalButtons.insertAdjacentElement('afterbegin', DeleteModalButtonConfirm);
+    divDeleteModalButtons.insertAdjacentElement('beforeend', DeleteModalButtonCancel);
+}
+
+const allDeleteButtons = document.querySelectorAll('.delete-button');
+
+
+divTasksList.addEventListener('click', (event) => {
+
+    console.log('target', event.target);
+    const isDeleteButton = event.target.closest('.task-item__main-container');
+    if (isDeleteButton) {
+        const divTaskItem = document.querySelector('.task-item');
+        divTaskItem.remove();
     }
 })
