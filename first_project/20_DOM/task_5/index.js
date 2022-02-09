@@ -92,12 +92,10 @@ tasks.forEach((obj) => {
 createTaskForm.addEventListener('submit', (event) => {
     event.preventDefault();
     const { target } = event;
-    // const { value } = target;
-    // const isValid = checkTaskNameInputOnValidation(value);
     const taskNameInput = target.taskName;
     const inputValue = taskNameInput.value;
-    console.log(textOfTasks)
-    console.log(inputValue)
+    console.log(textOfTasks);
+    console.log(inputValue);
     if (inputValue && !textOfTasks.includes(inputValue)) {
         const errorByCreateElement = document.querySelector('.error-message-block');
         if (errorByCreateElement) {
@@ -107,7 +105,6 @@ createTaskForm.addEventListener('submit', (event) => {
         if (numbersOfId.includes(randomNumber)) {
             randomNumber = getRandomNumber(1111111111111, 9999999999999);
         }
-        console.log(inputValue);
         const divTaskItem = document.createElement('div');
         divTaskItem.className = 'task-item';
         divTaskItem.dataset.taskId = `${randomNumber}`;
@@ -153,11 +150,11 @@ createTaskForm.addEventListener('submit', (event) => {
         }
         const searchErorEpmty = document.querySelector('.errorEmpty')
         if (!searchErorEpmty) {
-
             const errorSpan = document.createElement('span');
             errorSpan.className = 'error-message-block errorEmpty';
-            errorSpan.textContent = `Название задачи не должно быть пустым! Введите задачу корректно!`
+            errorSpan.textContent = `Название задачи не должно быть пустым! Введите задачу корректно!`;
             createTaskForm.append(errorSpan);
+            console.log(`Название задачи не должно быть пустым! Введите задачу корректно!`);
         }
 
     } else if (textOfTasks.includes(inputValue)) {
@@ -169,44 +166,78 @@ createTaskForm.addEventListener('submit', (event) => {
         if (!searchErrorDouble) {
             const errorSpan = document.createElement('span');
             errorSpan.className = 'error-message-block errorDouble';
-            errorSpan.textContent = `Задача с таким названием уже существует! Исключите повторы!`
+            errorSpan.textContent = `Задача с таким названием уже существует! Исключите повторы!`;
             createTaskForm.append(errorSpan);
+            console.log(`Задача с таким названием уже существует! Исключите повторы!`);
         }
     }
 })
-const deleteTaskFromTasks = function () {
-    const divDeleteTaskModalOverlay = document.createElement('div');
-    divDeleteTaskModalOverlay.className = 'modal-overlay modal-overlay_hidden';
-    const divDeleteModal = document.createElement('div');
-    divDeleteModal.className = 'delete-modal';
-    const h3DeleteModalQuestion = document.createElement('h3');
-    h3DeleteModalQuestion.className = 'delete-modal__question';
-    h3DeleteModalQuestion.textContent = 'Вы действительно хотите удалить задачу?';
-    const divDeleteModalButtons = document.createElement('div');
-    divDeleteModalButtons.className = 'delete-modal__buttons';
-    const DeleteModalButtonConfirm = document.createElement('button');
-    DeleteModalButtonConfirm.className = 'delete-modal__button delete-modal__confirm-button';
-    DeleteModalButtonConfirm.textContent = 'Удалить';
-    const DeleteModalButtonCancel = document.createElement('button');
-    DeleteModalButtonCancel.className = 'delete-modal__button delete-modal__cancel-button';
-    DeleteModalButtonCancel.textContent = 'Отмена';
-    body.insertAdjacentElement('beforeend', divDeleteTaskModalOverlay)
-    divDeleteTaskModalOverlay.insertAdjacentElement('afterbegin', divDeleteModal);
-    divDeleteModal.insertAdjacentElement('afterbegin', h3DeleteModalQuestion);
-    divDeleteModal.insertAdjacentElement('beforeend', divDeleteModalButtons);
-    divDeleteModalButtons.insertAdjacentElement('afterbegin', DeleteModalButtonConfirm);
-    divDeleteModalButtons.insertAdjacentElement('beforeend', DeleteModalButtonCancel);
-}
+// const deleteTaskFromTasks = function () {
+//     const divDeleteTaskModalOverlay = document.createElement('div');
+//     divDeleteTaskModalOverlay.className = 'modal-overlay';
+//     const divDeleteModal = document.createElement('div');
+//     divDeleteModal.className = 'delete-modal';
+//     const h3DeleteModalQuestion = document.createElement('h3');
+//     h3DeleteModalQuestion.className = 'delete-modal__question';
+//     h3DeleteModalQuestion.textContent = 'Вы действительно хотите удалить задачу?';
+//     const divDeleteModalButtons = document.createElement('div');
+//     divDeleteModalButtons.className = 'delete-modal__buttons';
+//     const DeleteModalButtonConfirm = document.createElement('button');
+//     DeleteModalButtonConfirm.className = 'delete-modal__button delete-modal__confirm-button';
+//     DeleteModalButtonConfirm.textContent = 'Удалить';
+//     const DeleteModalButtonCancel = document.createElement('button');
+//     DeleteModalButtonCancel.className = 'delete-modal__button delete-modal__cancel-button';
+//     DeleteModalButtonCancel.textContent = 'Отмена';
+//     body.insertAdjacentElement('beforeend', divDeleteTaskModalOverlay)
+//     divDeleteTaskModalOverlay.insertAdjacentElement('afterbegin', divDeleteModal);
+//     divDeleteModal.insertAdjacentElement('afterbegin', h3DeleteModalQuestion);
+//     divDeleteModal.insertAdjacentElement('beforeend', divDeleteModalButtons);
+//     divDeleteModalButtons.insertAdjacentElement('afterbegin', DeleteModalButtonConfirm);
+//     divDeleteModalButtons.insertAdjacentElement('beforeend', DeleteModalButtonCancel);
+// }
 
 const allDeleteButtons = document.querySelectorAll('.delete-button');
 
-
+const divDeleteTaskModalOverlay = document.createElement('div');
+divDeleteTaskModalOverlay.className = 'modal-overlay modal-overlay_hidden';
+const divDeleteModal = document.createElement('div');
+divDeleteModal.className = 'delete-modal';
+const h3DeleteModalQuestion = document.createElement('h3');
+h3DeleteModalQuestion.className = 'delete-modal__question';
+h3DeleteModalQuestion.textContent = 'Вы действительно хотите удалить задачу?';
+const divDeleteModalButtons = document.createElement('div');
+divDeleteModalButtons.className = 'delete-modal__buttons';
+const DeleteModalButtonConfirm = document.createElement('button');
+DeleteModalButtonConfirm.className = 'delete-modal__button delete-modal__confirm-button';
+DeleteModalButtonConfirm.textContent = 'Удалить';
+const DeleteModalButtonCancel = document.createElement('button');
+DeleteModalButtonCancel.className = 'delete-modal__button delete-modal__cancel-button';
+DeleteModalButtonCancel.textContent = 'Отмена';
+body.insertAdjacentElement('beforeend', divDeleteTaskModalOverlay)
+divDeleteTaskModalOverlay.insertAdjacentElement('afterbegin', divDeleteModal);
+divDeleteModal.insertAdjacentElement('afterbegin', h3DeleteModalQuestion);
+divDeleteModal.insertAdjacentElement('beforeend', divDeleteModalButtons);
+divDeleteModalButtons.insertAdjacentElement('afterbegin', DeleteModalButtonConfirm);
+divDeleteModalButtons.insertAdjacentElement('beforeend', DeleteModalButtonCancel);
 divTasksList.addEventListener('click', (event) => {
-
+    const targetDataTaskId = event.target.closest('.task-item');
+    console.log(targetDataTaskId.dataset.taskId);
     console.log('target', event.target);
-    const isDeleteButton = event.target.closest('.task-item__main-container');
+    const isDeleteButton = event.target.closest('.task-item__delete-button');
+    console.log(isDeleteButton)
     if (isDeleteButton) {
-        const divTaskItem = document.querySelector('.task-item');
-        divTaskItem.remove();
+        divDeleteTaskModalOverlay.classList.remove('modal-overlay_hidden')
+        divDeleteTaskModalOverlay.addEventListener('click', (event) => {
+            console.log('target', event.target)
+            const { target } = event;
+            console.log(target)
+            console.log(isDeleteButton)
+            if (target.textContent === 'Удалить') {
+                divDeleteTaskModalOverlay.classList.add('modal-overlay_hidden')
+                targetDataTaskId.remove()
+            } else if (target.textContent === 'Отмена'){
+                divDeleteTaskModalOverlay.classList.add('modal-overlay_hidden')
+            }
+        })
     }
 })
