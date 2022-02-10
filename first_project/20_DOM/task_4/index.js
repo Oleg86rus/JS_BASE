@@ -38,7 +38,6 @@ const numbersOfId = [];
 const textOfTasks = [];
 const divTaskList = document.querySelector('.tasks-list');
 const createTaskForm = document.querySelector('.create-task-block');
-const searchEror = document.querySelector('.errorByCreateElement')
 
 
 tasks.forEach((obj) => {
@@ -144,9 +143,8 @@ createTaskForm.addEventListener('submit', (event) => {
         if (errorByCreateElement) {
             errorByCreateElement.remove();
         }
-        const searchErorEpmty = document.querySelector('.errorEmpty')
+        const searchErorEpmty = document.querySelector('.errorEmpty');
         if (!searchErorEpmty) {
-
             const errorSpan = document.createElement('span');
             errorSpan.className = 'errorByCreateElement errorEmpty';
             errorSpan.textContent = `Название задачи не должно быть пустым! Введите задачу корректно!`
@@ -158,11 +156,11 @@ createTaskForm.addEventListener('submit', (event) => {
         if (errorByCreateElement) {
             errorByCreateElement.remove();
         }
-        const searchErrorDouble = document.querySelector('.errorDouble')
+        const searchErrorDouble = document.querySelector('.errorDouble');
         if (!searchErrorDouble) {
             const errorSpan = document.createElement('span');
             errorSpan.className = 'errorByCreateElement errorDouble';
-            errorSpan.textContent = `Задача с таким названием уже существует! Исключите повторы!`
+            errorSpan.textContent = `Задача с таким названием уже существует! Исключите повторы!`;
             createTaskForm.append(errorSpan);
         }
     }

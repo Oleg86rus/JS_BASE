@@ -130,6 +130,6 @@ createTaskForm.addEventListener('submit', (event) => {
         divTaskItemMainContent.insertAdjacentElement('beforeend', spanTaskItemText);
         divTaskItemMainContainer.insertAdjacentElement('beforeend', buttonTaskItemDeleteButton);
     } else {
-        alert(`Введите корректное задание!`)
+        alert(`Введите корректное задание!`);
     }
 })

@@ -41,8 +41,8 @@ const createTaskForm = document.querySelector('.create-task-block');
 const body = document.querySelector('body');
 
 tasks.forEach((obj) => {
-    numbersOfId.push(Number(obj.id))
-    console.log('Список всех Id: ', numbersOfId)
+    numbersOfId.push(Number(obj.id));
+    console.log('Список всех Id: ', numbersOfId);
     const divTaskItem = document.createElement('div');
     divTaskItem.className = 'task-item';
     divTaskItem.dataset.taskId = `${obj.id}`;
@@ -168,7 +168,7 @@ createTaskForm.addEventListener('submit', (event) => {
         if (errorByCreateElement) {
             errorByCreateElement.remove();
         }
-        const searchErorEpmty = document.querySelector('.errorEmpty')
+        const searchErorEpmty = document.querySelector('.errorEmpty');
         if (!searchErorEpmty) {
             const errorSpan = document.createElement('span');
             errorSpan.className = 'error-message-block errorEmpty';
@@ -182,7 +182,7 @@ createTaskForm.addEventListener('submit', (event) => {
         if (errorByCreateElement) {
             errorByCreateElement.remove();
         }
-        const searchErrorDouble = document.querySelector('.errorDouble')
+        const searchErrorDouble = document.querySelector('.errorDouble');
         if (!searchErrorDouble) {
             const errorSpan = document.createElement('span');
             errorSpan.className = 'error-message-block errorDouble';
@@ -208,7 +208,7 @@ DeleteModalButtonConfirm.textContent = 'Удалить';
 const DeleteModalButtonCancel = document.createElement('button');
 DeleteModalButtonCancel.className = 'delete-modal__button delete-modal__cancel-button';
 DeleteModalButtonCancel.textContent = 'Отмена';
-body.insertAdjacentElement('beforeend', divDeleteTaskModalOverlay)
+body.insertAdjacentElement('beforeend', divDeleteTaskModalOverlay);
 divDeleteTaskModalOverlay.insertAdjacentElement('afterbegin', divDeleteModal);
 divDeleteModal.insertAdjacentElement('afterbegin', h3DeleteModalQuestion);
 divDeleteModal.insertAdjacentElement('beforeend', divDeleteModalButtons);
@@ -220,19 +220,19 @@ divTasksList.addEventListener('click', (event) => {
     console.log(targetDataTaskId.dataset.taskId);
     console.log('target', event.target);
     const isDeleteButton = event.target.closest('.task-item__delete-button');
-    console.log(isDeleteButton)
+    console.log(isDeleteButton);
     if (isDeleteButton) {
-        divDeleteTaskModalOverlay.classList.remove('modal-overlay_hidden')
+        divDeleteTaskModalOverlay.classList.remove('modal-overlay_hidden');
         divDeleteTaskModalOverlay.addEventListener('click', (event) => {
-            console.log('target', event.target)
+            console.log('target', event.target);
             const { target } = event;
-            console.log(target)
-            console.log(isDeleteButton)
+            console.log(target);
+            console.log(isDeleteButton);
             if (target.textContent === 'Удалить') {
-                divDeleteTaskModalOverlay.classList.add('modal-overlay_hidden')
-                targetDataTaskId.remove()
+                divDeleteTaskModalOverlay.classList.add('modal-overlay_hidden');
+                targetDataTaskId.remove();
             } else if (target.textContent === 'Отмена'){
-                divDeleteTaskModalOverlay.classList.add('modal-overlay_hidden')
+                divDeleteTaskModalOverlay.classList.add('modal-overlay_hidden');
             }
         })
     }
