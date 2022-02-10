@@ -40,9 +40,21 @@ const divTasksList = document.querySelector('.tasks-list');
 const createTaskForm = document.querySelector('.create-task-block');
 const body = document.querySelector('body');
 
+
+const changeTegBorder = function (el, color) {
+    el.forEach(element => element.style.border = color);
+}
+const changeTegColor = function (el, color) {
+    el.forEach(element => element.style.color = color);
+}
+const changeColorInLabel = function (el, property, color) {
+    el.forEach((element) => {
+        element.style.setProperty(property, color);
+    })
+}
 tasks.forEach((obj) => {
-    numbersOfId.push(Number(obj.id))
-    console.log('Список всех Id: ', numbersOfId)
+    numbersOfId.push(Number(obj.id));
+    console.log('Список всех Id: ', numbersOfId);
     const divTaskItem = document.createElement('div');
     divTaskItem.className = 'task-item';
     divTaskItem.dataset.taskId = `${obj.id}`;
@@ -82,20 +94,40 @@ tasks.forEach((obj) => {
     divTaskItemMainContent.insertAdjacentElement('beforeend', spanTaskItemText);
     divTaskItemMainContainer.insertAdjacentElement('beforeend', buttonTaskItemDeleteButton);
 })
-// const checkTaskNameInputOnValidation = (value) => {
-//     if (!value || value.includes('@')) {
-//         return false;
-//     }
-//
-//     return true;
-// }
+const checkTaskNameInputOnValidation = (value) => {
+    if (!value) {
+        return false;
+    }
+    return true;
+}
+
+const createTaskBlock = document.querySelector('.create-task-block');
+const taskNameInput = createTaskBlock.querySelector('.create-task-block__input');
+
+taskNameInput.addEventListener('input', (event) => {
+    const { target } = event;
+    const { value } = target;
+
+    const isValid = checkTaskNameInputOnValidation(value);
+    const messageBlockFromDOM = document.querySelector('.error-message-block');
+
+    if (!isValid || textOfTasks.includes(value)) {
+        // messageBlockFromDOM.remove();
+        const newMessageBlock = document.createElement('span');
+        newMessageBlock.className = 'error-message-block';
+        newMessageBlock.textContent = 'Ошибка! Текст для задачи не должен быть пустым и не должен дублироваться!';
+        createTaskBlock.append(newMessageBlock);
+    } else if (isValid && messageBlockFromDOM) {
+        messageBlockFromDOM.remove();
+    }
+})
 createTaskForm.addEventListener('submit', (event) => {
     event.preventDefault();
     const { target } = event;
     const taskNameInput = target.taskName;
     const inputValue = taskNameInput.value;
-    console.log(textOfTasks);
-    console.log(inputValue);
+    console.log('Массик со списком задач: ', textOfTasks);
+    console.log('Введенная задача: ', inputValue);
     if (inputValue && !textOfTasks.includes(inputValue)) {
         const errorByCreateElement = document.querySelector('.error-message-block');
         if (errorByCreateElement) {
@@ -148,13 +180,14 @@ createTaskForm.addEventListener('submit', (event) => {
         if (errorByCreateElement) {
             errorByCreateElement.remove();
         }
-        const searchErorEpmty = document.querySelector('.errorEmpty')
+        const searchErorEpmty = document.querySelector('.errorEmpty');
         if (!searchErorEpmty) {
             const errorSpan = document.createElement('span');
             errorSpan.className = 'error-message-block errorEmpty';
-            errorSpan.textContent = `Название задачи не должно быть пустым! Введите задачу корректно!`;
+            errorSpan.textContent = `Ошибка! Текст для задачи не должен быть пустым и не должен дублироваться!`;
             createTaskForm.append(errorSpan);
             console.log(`Название задачи не должно быть пустым! Введите задачу корректно!`);
+            alert(`Название задачи не должно быть пустым! Введите задачу корректно!`);
         }
 
     } else if (textOfTasks.includes(inputValue)) {
@@ -162,13 +195,14 @@ createTaskForm.addEventListener('submit', (event) => {
         if (errorByCreateElement) {
             errorByCreateElement.remove();
         }
-        const searchErrorDouble = document.querySelector('.errorDouble')
+        const searchErrorDouble = document.querySelector('.errorDouble');
         if (!searchErrorDouble) {
             const errorSpan = document.createElement('span');
             errorSpan.className = 'error-message-block errorDouble';
-            errorSpan.textContent = `Задача с таким названием уже существует! Исключите повторы!`;
+            errorSpan.textContent = `Ошибка! Текст для задачи не должен быть пустым и не должен дублироваться!`;
             createTaskForm.append(errorSpan);
             console.log(`Задача с таким названием уже существует! Исключите повторы!`);
+            alert(`Задача с таким названием уже существует! Исключите повторы!`);
         }
     }
 })
@@ -188,7 +222,7 @@ DeleteModalButtonConfirm.textContent = 'Удалить';
 const DeleteModalButtonCancel = document.createElement('button');
 DeleteModalButtonCancel.className = 'delete-modal__button delete-modal__cancel-button';
 DeleteModalButtonCancel.textContent = 'Отмена';
-body.insertAdjacentElement('beforeend', divDeleteTaskModalOverlay)
+body.insertAdjacentElement('beforeend', divDeleteTaskModalOverlay);
 divDeleteTaskModalOverlay.insertAdjacentElement('afterbegin', divDeleteModal);
 divDeleteModal.insertAdjacentElement('afterbegin', h3DeleteModalQuestion);
 divDeleteModal.insertAdjacentElement('beforeend', divDeleteModalButtons);
@@ -200,20 +234,56 @@ divTasksList.addEventListener('click', (event) => {
     console.log(targetDataTaskId.dataset.taskId);
     console.log('target', event.target);
     const isDeleteButton = event.target.closest('.task-item__delete-button');
-    console.log(isDeleteButton)
+    console.log(isDeleteButton);
     if (isDeleteButton) {
-        divDeleteTaskModalOverlay.classList.remove('modal-overlay_hidden')
+        divDeleteTaskModalOverlay.classList.remove('modal-overlay_hidden');
         divDeleteTaskModalOverlay.addEventListener('click', (event) => {
-            console.log('target', event.target)
+            console.log('target', event.target);
             const { target } = event;
-            console.log(target)
-            console.log(isDeleteButton)
+            console.log(target);
+            console.log(isDeleteButton);
             if (target.textContent === 'Удалить') {
-                divDeleteTaskModalOverlay.classList.add('modal-overlay_hidden')
-                targetDataTaskId.remove()
+                divDeleteTaskModalOverlay.classList.add('modal-overlay_hidden');
+                targetDataTaskId.remove();
             } else if (target.textContent === 'Отмена'){
-                divDeleteTaskModalOverlay.classList.add('modal-overlay_hidden')
+                divDeleteTaskModalOverlay.classList.add('modal-overlay_hidden');
             }
         })
+    }
+})
+ const bodyColor = function () {
+    const elColor = body.style.background;
+    if (elColor === '' || elColor === 'initial') {
+        return 'white';
+    } else if (elColor === 'rgb(36, 41, 46)') {
+        return 'black';
+    }
+}
+bodyColor();
+document.addEventListener('keydown', (event) => {
+    bodyColor();
+    // console.log(bodyColor());
+    const { key } = event;
+    // console.log(key);
+    const taskItem = document.querySelectorAll('.task-item');
+    const buttons = document.querySelectorAll('button');
+    const borderOfLabel = document.querySelectorAll('label');
+
+    if (key === 'Tab' && bodyColor() === 'white') {
+        console.log(key);
+        console.log('Вы нажали Tab, цветовая тема была изменена на черную!');
+        body.style.background = '#24292E';
+        changeTegColor(taskItem, '#ffffff');
+        console.log(buttons);
+        changeTegBorder(buttons,  '1px solid #ffffff');
+        changeColorInLabel(borderOfLabel, '--checkbox-border-color', '#ffffff');
+    }
+    else if (key === 'Tab' && bodyColor() === 'black') {
+        console.log(key);
+        console.log('Вы нажали Tab, цветовая тема была изменена на белую!');
+        body.style.background = 'initial';
+        changeColorInLabel(borderOfLabel, '--checkbox-border-color', '#000');
+        changeTegColor(taskItem, 'initial');
+        changeTegBorder(buttons,  'none');
     }
 })

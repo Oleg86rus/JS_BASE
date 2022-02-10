@@ -99,6 +99,7 @@ taskNameInput.addEventListener('input', (event) => {
     const messageBlockFromDOM = document.querySelector('.error-message-block');
 
     if (!isValid || textOfTasks.includes(value)) {
+        // messageBlockFromDOM.remove();
         const newMessageBlock = document.createElement('span');
         newMessageBlock.className = 'error-message-block';
         newMessageBlock.textContent = 'Ошибка! Текст для задачи не должен быть пустым и не должен дублироваться!';
@@ -171,7 +172,7 @@ createTaskForm.addEventListener('submit', (event) => {
         if (!searchErorEpmty) {
             const errorSpan = document.createElement('span');
             errorSpan.className = 'error-message-block errorEmpty';
-            errorSpan.textContent = `Название задачи не должно быть пустым! Введите задачу корректно!`;
+            errorSpan.textContent = `Ошибка! Текст для задачи не должен быть пустым и не должен дублироваться!`;
             createTaskForm.append(errorSpan);
             console.log(`Название задачи не должно быть пустым! Введите задачу корректно!`);
         }
@@ -185,7 +186,7 @@ createTaskForm.addEventListener('submit', (event) => {
         if (!searchErrorDouble) {
             const errorSpan = document.createElement('span');
             errorSpan.className = 'error-message-block errorDouble';
-            errorSpan.textContent = `Задача с таким названием уже существует! Исключите повторы!`;
+            errorSpan.textContent = `Ошибка! Текст для задачи не должен быть пустым и не должен дублироваться!`;
             createTaskForm.append(errorSpan);
             console.log(`Задача с таким названием уже существует! Исключите повторы!`);
         }
