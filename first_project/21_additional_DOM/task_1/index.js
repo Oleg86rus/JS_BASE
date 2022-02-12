@@ -133,5 +133,5 @@ const mainContainer = document.querySelector('.container');
 customSelect.render(mainContainer);
 
 
-const newcustom = new CustomSelect('124', listItems)
-newcustom.render(mainContainer)
+// const newcustom = new CustomSelect('124', listItems)
+// newcustom.render(mainContainer)

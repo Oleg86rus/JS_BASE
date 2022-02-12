@@ -6,26 +6,6 @@
 Текущая дата должна быть меньше свойства passportExpiration
 У клиента не должно быть судимости, т.е. значение свойства criminalRecord должно равняться false
  */
-console.log(new Date('19.06.2023'))
-
-console.log(new Date('04.06.2021'))
-console.log(new Date('31.07.2022'))
-console.log(new Date('31.12.2021'))
-
-const allowVisa = (arr) => {
-    const arrResult = [];
-    arr.forEach((obj) => {
-        console.log(obj.passportExpiration);
-        const dateOfPassportExpiration = new Date(obj.passportExpiration);
-        console.log(Date.now());
-        console.log(dateOfPassportExpiration);
-        if (Date.now() < new Date(obj.passportExpiration)) {
-            console.log('Текущая дата меньше срока истечения паспорта', obj.passportExpiration);
-        }
-    })
-    return arrResult;
-}
-
 
 const peopleWithVisa = [
     {
@@ -43,7 +23,7 @@ const peopleWithVisa = [
     {
         firstName: 'Leighann',
         lastName: 'Scott',
-        criminalRecord: true,
+        criminalRecord: false,
         passportExpiration: '31.07.2022',
     },
     {
@@ -53,6 +33,22 @@ const peopleWithVisa = [
         passportExpiration: '31.12.2021',
     },
 ];
+
+const allowVisa = (people) => {
+    return people.filter((person) => {
+        const splittedExpirationDate = person.passportExpiration.split('.');
+        const year = splittedExpirationDate[splittedExpirationDate.length - 1];
+        const month = splittedExpirationDate[1];
+        const date = splittedExpirationDate[0];
+        const passportExpirationDate = new Date(year, month - 1, date);
+        console.log('passportExpirationDate', passportExpirationDate);
+        if ((passportExpirationDate.getTime() > Date.now()) && !person.criminalRecord) {
+            return true;
+        }
+
+        return false;
+    });
+};
 
 const result = allowVisa(peopleWithVisa);
 console.log('result', result);
