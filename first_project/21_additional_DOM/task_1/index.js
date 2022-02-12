@@ -16,27 +16,28 @@
  */
 
 class CustomSelect {
+    #id;
+    #options;
     constructor(id, options) {
-        this.id = id;
-        this.options = [...options];
+        this.#id = id;
+        this.#options = [...options];
     }
 
     render (container) {
-        const findNameInOptions = this.options;
-        container = document.querySelector('.container');
-        console.log(this.options)
+        const findNameInOptions = this.#options;
+        // container = document.querySelector('.container');
         const selectDropdown = document.createElement('div');
-        selectDropdown.className = `select-dropdown select-dropdown--${this.id}`;
+        selectDropdown.className = `select-dropdown select-dropdown--${this.#id}`;
 
         const selectDropdownButton = document.createElement('button');
-        selectDropdownButton.className = `select-dropdown__button select-dropdown__button--${this.id}`;
+        selectDropdownButton.className = `select-dropdown__button select-dropdown__button--${this.#id}`;
 
         const selectDropdownSpan = document.createElement('span');
-        selectDropdownSpan.className = `select-dropdown select-dropdown--${this.id}`;
+        selectDropdownSpan.className = `select-dropdown select-dropdown--${this.#id}`;
         selectDropdownSpan.textContent = 'Выберите элемент';
 
         const selectDropdownList = document.createElement('ul');
-        selectDropdownList.className = `select-dropdown__list select-dropdown__list--${this.id}`;
+        selectDropdownList.className = `select-dropdown__list select-dropdown__list--${this.#id}`;
 
         const selectDropdownListItem = document.createElement('li');
         selectDropdownListItem.className = 'select-dropdown__list-item';
@@ -47,8 +48,7 @@ class CustomSelect {
         container.append(selectDropdown);
         selectDropdown.append(selectDropdownButton, selectDropdownList);
         selectDropdownButton.append(selectDropdownSpan);
-        this.options.forEach((el) => {
-            console.log(el)
+        this.#options.forEach((el) => {
             let selectDropdownListItem = document.createElement('li');
             selectDropdownListItem.className = 'select-dropdown__list-item';
             selectDropdownListItem.dataset.value = `${el.value}`;
@@ -56,7 +56,6 @@ class CustomSelect {
             selectDropdownList.append(selectDropdownListItem);
         })
         function addEventListenerInUl() {
-            console.log(selectDropdownList)
             selectDropdownButton.addEventListener('click', () => {
                 const searchClassInUl = [...selectDropdownList.classList];
                 console.log(searchClassInUl)
@@ -65,6 +64,14 @@ class CustomSelect {
                 } else {
                     selectDropdownList.classList.remove('active');
                 }
+                const selectDropdownAllListItems = document.querySelectorAll('li')
+                selectDropdownAllListItems.forEach((el) => {
+                    console.log([...el.classList])
+                    console.log(selectDropdownButton.textContent)
+                    if (el.textContent !== selectDropdownButton.textContent) {
+                        el.classList.remove('selected')
+                    }
+                })
             })
 
         }
@@ -72,35 +79,27 @@ class CustomSelect {
 
         function addEventListenerInLi() {
             console.log(selectDropdownListItem)
-            const selectDropdownAllListItems = document.querySelectorAll('.select-dropdown__list-item')
-            // selectDropdownButton.addEventListener('click', (event) => {
-            //     // const { target } = event
-            //     const selectDrodownLi = event.target.closest('.select-dropdown__list-item');
-            //     // console.log(target)
-            //     if (selectDrodownLi) {
-            //         console.log('1')
-            //     }
-            //
-            // })
+            const selectDropdownAllListItems = document.querySelectorAll('li')
+            selectDropdownAllListItems.forEach((el) => {
+                    el.addEventListener('click', (event) => {
 
-
-
-        selectDropdownAllListItems.forEach((el) => {
-            el.addEventListener('click', (event) => {
-                console.log(el.dataset.value)
-                const { target } = event;
-                console.log(target.dataset.value, target.textContent)
-                console.log(findNameInOptions)
-                const newTextInButton = findNameInOptions.find((elem) => {
-                    if (elem.value === Number(target.dataset.value)) {
-                        return elem;
-                    }
-                })
-                console.log(newTextInButton)
-                selectDropdownSpan.textContent = newTextInButton.text;
-                selectDropdownList.classList.remove('active');
+                        console.log(el.dataset.value)
+                        const { target } = event;
+                        console.log(target.dataset.value, target.textContent)
+                        console.log(findNameInOptions)
+                        const newTextInButton = findNameInOptions.find((elem) => {
+                            if (elem.value === Number(target.dataset.value)) {
+                                return elem;
+                            }
+                        })
+                        console.log(newTextInButton)
+                        selectDropdownSpan.textContent = newTextInButton.text;
+                        if (![...el.classList].includes('selected')) {
+                            el.classList.add('selected')
+                        }
+                        selectDropdownList.classList.remove('active');
+                    })
             })
-        })
 
         }
         addEventListenerInLi()
@@ -129,9 +128,10 @@ const listItems = [
         text: 'CSS'
     }
 ]
-const newCustomSelect = new CustomSelect(123, listItems);
-newCustomSelect.render();
+const customSelect = new CustomSelect('123', listItems);
+const mainContainer = document.querySelector('.container');
+customSelect.render(mainContainer);
 
 
-const select2 = new CustomSelect(222, listItems)
-select2.render()
+const newcustom = new CustomSelect('124', listItems)
+newcustom.render(mainContainer)
