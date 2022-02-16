@@ -23,7 +23,7 @@ const usersLoader = () => {
     return loaderHTML;
 }
 
-const usersIds = [5, 6, 2, 1];
+const usersIds = [5, 6, 2, 1, 11];
 const dataContainer = document.querySelector('#data-container');
 const createUserElement = (text) => {
     const userElement = document.createElement('li');

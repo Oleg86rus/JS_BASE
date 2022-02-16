@@ -13,9 +13,7 @@
 </li>
 В src у img должно быть подставлено значение свойства url у фотографии, а в тег h3 - значение свойства title. Добавляйте конечную фотографию в элемент с id равным “data-container”.
  */
-const photoArr = [];
 const URL = 'https://jsonplaceholder.typicode.com/photos';
-
 const photoLoader = () => {
     const loaderHTML = document.querySelector('#loader');
     const isHidden = loaderHTML.hasAttribute('hidden');
@@ -26,99 +24,49 @@ const photoLoader = () => {
         loaderHTML.setAttribute('hidden', '');
         console.log('загрузка удалена');
     }
-
     return loaderHTML;
 }
-
 const dataContainer = document.querySelector('#data-container');
-const createHTMLelement = (url, title) => {
+const createHTMLelement = (obj) => {
     const photoItem = document.createElement('li');
     photoItem.className = 'photo-item';
     const photoItemImage = document.createElement('img');
     photoItemImage.className = 'photo-item__image';
-    photoItemImage.src = url;
+    photoItemImage.src = obj.url;
     const photoItemTitle = document.createElement('h3');
     photoItemTitle.className = 'photo-item__title';
-    photoItemTitle.textContent = title;
+    photoItemTitle.textContent = obj.title;
     photoItem.append(photoItemImage, photoItemTitle);
-
     return photoItem;
 }
-// const getUsersByIds = (ids) => {
-//     usersLoader();
-//     const requests = ids.map((id) => fetch(`${URL}/${id}`));
-//     Promise.all(requests)
-//         .then((responses) => {
-//             const dataResults = responses.map((response) => response.json());
-//             return Promise.all(dataResults);
-//         })
-//         .then((users) => {
-//             console.log('todos: ', users);
-//             users.forEach((user) => {
-//                 const userHTML = createUserElement(user.name);
-//                 dataContainer.append(userHTML);
-//             })
-//         })
-//         .catch((error) => {
-//             console.error('ОШИБКА - ERROR', error);
-//         })
-//         .finally(() => {
-//             usersLoader();
-//         })
-
-
-// dataPushesInHTML
-//     .then((response) => {
-//         if (!response.ok) {
-//             throw new Error('Ошибка запроса!');
-//         }
-//         return response.json();
-//     })
-//     .then((todos) => {
-//         console.log(todos);
-//         todos.forEach((todo) => {
-//             const todoHTML = createTodoElement(todo.name);
-//             dataContainer.append(todoHTML);
-//         })
-//     })
-//     .catch((error) => {
-//         console.error(error);
-//     })
-//     .finally(() => {
-//         toggleLoader();
-//         console.log(toggleLoader());
-//         console.log('finally');
-//         toggleLoader();
-//     });
-// }
-// getUsersByIds();
-const getFastestLoadedPhoto = (ids) => {
+const getFastestLoadedPhoto = (arr) => {
     photoLoader();
-    const dataCreatingHTML = fetch(URL, {
-        method: 'GET'
-    })
-    console.log(dataCreatingHTML);
-
-
-    dataCreatingHTML
+    console.log('Переданный массив: ', arr);
+    const onlyNumbers = arr.filter(Number);
+    console.log('Отобранные числа: ', onlyNumbers);
+    const requests = onlyNumbers.map((el) => fetch(`${URL}/${el}`));
+    console.log(requests)
+    Promise.race(requests)
+        .then((result) => {
+            console.log('Самая быстрая картинка: ', result);
+            return result;
+        })
         .then((response) => {
             if (!response.ok) {
-                throw new Error('ОШИБКА');
+                throw new Error('Ошибка!!!');
+            } else {
+                return response.json();
             }
-            return response.json();
         })
-        .then((photoes) => {
-            console.log(photoes)
-            photoes.forEach((photo) => {
-                console.log(photo);
-                const photoHTML = createHTMLelement(photo);
-                dataContainer.append(photoHTML);
-            })
+        .then((photo) => {
+            const photoHTML = createHTMLelement(photo);
+            dataContainer.append(photoHTML);
         })
         .catch((error) => {
-            console.error('ERROR:', error);
+            console.log('ОШИБКА', error)
         })
-
-    dataCreatingHTML.race
+        .finally(() => {
+            photoLoader();
+        })
 }
-getFastestLoadedPhoto()
+getFastestLoadedPhoto([60, 12, 55, 'asdas'])

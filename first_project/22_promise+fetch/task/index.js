@@ -16,7 +16,7 @@ const promise2 = new Promise((resolve) => {
 const promise3 = new Promise((resolve,reject) => {
     setTimeout(() => {
         reject('promise3');
-    }, 1000);
+    }, 100);
 });
 Promise.race([
     promise1,
