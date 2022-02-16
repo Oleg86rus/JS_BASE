@@ -18,7 +18,7 @@ body {
     text-shadow: 0 1px 0 var(--text-shadow-color);
 }
 
-#data-container a {
+#data-container li {
     position: relative;
     display: block;
     padding: .4em .4em .4em 2em;
@@ -30,15 +30,15 @@ body {
     transition: .3s ease-out;
 }
 
-#data-container a:hover {
+#data-container li:hover {
     background: var(--link-background);
 }
 
-#data-container a:hover:before {
+#data-container li:hover:before {
     transform: rotate(360deg);
 }
 
-#data-container a:before {
+#data-container li:before {
     content: counter(li);
     counter-increment: li;
     position: absolute;
