@@ -29,7 +29,7 @@ async function createNewPost() {
         const data = await response.json();
         console.log('Data: ', data);
     } catch (error) {
-        console.error('ОШИБКА!!!')
+        console.error('ОШИБКА!!!');
     } finally {
         isLoading = false;
     }
