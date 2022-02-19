@@ -12,3 +12,21 @@ promise.then(() => {
 });
 
 console.log('End');
+
+
+
+/*
+Сначала ответил так:
+
+console.log('End');
+console.log('Promise resolve');
+console.log('setTimeout');
+console.log('Promise');
+
+Потом посмотрел, увидел, что ошибся.
+console.log('Promise');
+console.log('End');
+console.log('Promise resolve');
+console.log('setTimeout');
+
+ */
