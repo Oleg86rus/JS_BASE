@@ -1,5 +1,5 @@
 :root {
-    --main-background: black;
+    --main-background: #a28529;
     --text-color: #ffffff;
     --js-image-size: 200px;
 }
@@ -29,7 +29,7 @@ body {
 }
 
 .js-image {
-    width: var(--js-image-size);
+    width: 300px;
     height: var(--js-image-size);
 }
 

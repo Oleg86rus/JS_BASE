@@ -21,6 +21,12 @@ export class TimerBlock {
         return DateUtils.getPreciseDateDifference(new Date(), this.#date);
     }
 
+    #enableDateUpdate() {
+        setInterval(() => {
+            this.#timerTextHTML.textContent = this.#getTimerContent();
+        }, 1000)
+    }
+
     render() {
         this.#timerContainer.id = 'timer';
         this.#timerTextHTML.className = 'timer-text';
@@ -33,8 +39,9 @@ export class TimerBlock {
         todayDateHTML.textContent = `Сегодня: ${todayDateFormat}`
 
         this.#timerContainer.append(this.#timerTextHTML, todayDateHTML);
+        this.#enableDateUpdate();
+
 
         return this.#timerContainer;
-
     }
 }
