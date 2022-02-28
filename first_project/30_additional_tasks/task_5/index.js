@@ -11,4 +11,7 @@
  */
 
 import './index.css';
-
+import {findingTotalAmount} from "./src/module/total-amount";
+import {submitAmount} from "./src/module/submit-amount";
+findingTotalAmount();
+submitAmount();
