@@ -19,13 +19,8 @@ const isPalindrome = (word) => {
             palindrom = false;
         }
     }
-    if (palindrom) {
-        console.log(true)
-        return true;
-    } else {
-        console.log(false)
-        return false
-    }
+    console.log(palindrom)
+    return palindrom;
 }
 isPalindrome('racecar') // true
 isPalindrome('programmer') // false
