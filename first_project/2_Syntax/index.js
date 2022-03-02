@@ -13,3 +13,4 @@ console.log(mySurname);
 console.log(myFavoriteDrink);
 console.log(myFavoriteAnimal);
 console.log(myFavoriteProgrammingLanguage);
+
