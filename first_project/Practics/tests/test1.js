@@ -21,3 +21,15 @@
     ]
 
  */
+
+function descendingOrder(n){
+    let a = String(n).split('');
+    a.forEach(el => Number(el))
+    let d = a.sort((a, b) => {
+        return b - a;
+    }).join('')
+
+    return d;
+    //...
+}
+console.log(descendingOrder(2321))
